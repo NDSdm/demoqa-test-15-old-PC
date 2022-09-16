@@ -27,6 +27,7 @@ public class automationPracticeForm {
         $("#userEmail").setValue("test@test.test");
         $("#userNumber").setValue("1234567890");
         $("#currentAddress").setValue("test test index:123");
+        $("#uploadPicture").uploadFromClasspath("img/1.png");
         $("#gender-radio-1").parent().click();
         $("#dateOfBirthInput").click();
         $(".react-datepicker__month-select").selectOption("August");
@@ -39,7 +40,6 @@ public class automationPracticeForm {
         $("#city").click();
         $("#stateCity-wrapper").$(byText("Delhi")).click();
         $("#submit").click();
-        $("uploadPicture").uploadFromClasspath("img/1.png");
 
         $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
 
