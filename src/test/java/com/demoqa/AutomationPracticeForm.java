@@ -9,13 +9,13 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
-public class automationPracticeForm {
+public class AutomationPracticeForm {
 
     @BeforeAll
     static void configuration() {
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.browserSize = "1720x1440";
-//        Configuration.holdBrowserOpen = true;
+        Configuration.holdBrowserOpen = true;
     }
 
     @Test
@@ -28,7 +28,7 @@ public class automationPracticeForm {
         $("#userNumber").setValue("1234567890");
         $("#currentAddress").setValue("test test index:123");
         $("#uploadPicture").uploadFromClasspath("img/1.png");
-        $("#gender-radio-1").parent().click();
+        $("#genterWrapper").$(byText("Male")).click();
         $("#dateOfBirthInput").click();
         $(".react-datepicker__month-select").selectOption("August");
         $(".react-datepicker__year-select").selectOption("1988");
@@ -46,7 +46,14 @@ public class automationPracticeForm {
         $(".table-responsive").shouldHave(text("Dmitriy Ivanov"),
                 text("test@test.test"),
                 text("1234567890"),
-                text("test test index:123"));
-        $("#closeLargeModal").click();
+                text("test test index:123"),
+                text("male"),
+                text("08 August,1988"),
+                text("English"),
+                text("Reading"),
+                text("1.png"),
+                text("test test index:123"),
+                text("NCR Delhi"));
+//        $("#closeLargeModal").click();
     }
 }
