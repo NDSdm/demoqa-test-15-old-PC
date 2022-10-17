@@ -1,9 +1,12 @@
 package com.demoqa.tests;
 
 import com.codeborne.selenide.Configuration;
+import com.demoqa.testData.FakerInformation;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationForm;
+
+import static com.demoqa.testData.FakerInformation.email;
 
 public class RegistationFormTest {
     RegistrationForm registrationForm = new RegistrationForm();
@@ -15,38 +18,31 @@ public class RegistationFormTest {
         Configuration.holdBrowserOpen = true;
     }
 
-    String name = "Dmitriy";
-    String surname = "Ivanov";
-    String email = "test@test.test";
-    String number = "1234567890";
-    String address = "test test index:123";
-
     @Test
     void formTest() {
         registrationForm.openPage()
-                .setFirstName(name)
-                .setLastName(surname)
+                .setFirstName(FakerInformation.name)
+                .setLastName(FakerInformation.surname)
                 .setEmail(email)
-                .setGender("Male")
-                .setNumber(number).setBirthDate("08", "August", "1998")
-                .setSubject("English")
-                .setHobbies("Sports")
-                .setHobbies("Reading")
-                .setHobbies("Music")
-                .setPicture("img/1.png")
-                .setAddress(address)
-                .setLocation("NCR", "Delhi")
+                .setGender(FakerInformation.gender)
+                .setNumber(FakerInformation.number)
+                .setBirthDate(FakerInformation.day, FakerInformation.month, FakerInformation.year)
+                .setSubject(FakerInformation.subject)
+                .setHobbies(FakerInformation.hobbies)
+                .setPicture(FakerInformation.picturePath)
+                .setAddress(FakerInformation.address)
+                .setLocation(FakerInformation.state, FakerInformation.city)
                 .clickSubmit();
-
-        registrationForm.checkResult("Student Name", (name + " " + surname))
-                .checkResult("Student Email", email)
-                .checkResult("Gender", "Male")
-                .checkResult("Mobile", number)
-                .checkResult("Date of Birth", "08 August,1998")
-                .checkResult("Subjects", "English")
-                .checkResult("Hobbies", "Sports, Reading, Music")
-                .checkResult("Picture", "1.png")
-                .checkResult("Address", address)
-                .checkResult("State and City", "NCR Delhi");
+        registrationForm.checkResult()
+                .checkResult("Student Name", FakerInformation.name + " " + FakerInformation.surname)
+                .checkResult("Student Email", FakerInformation.email)
+                .checkResult("Gender", FakerInformation.gender)
+                .checkResult("Mobile", FakerInformation.number)
+                .checkResult("Date of Birth", FakerInformation.birthDay)
+                .checkResult("Subjects", FakerInformation.subject)
+                .checkResult("Hobbies", FakerInformation.hobbies)
+                .checkResult("Picture", FakerInformation.picture)
+                .checkResult("Address", FakerInformation.address)
+                .checkResult("State and City", FakerInformation.state + " " + FakerInformation.city);
     }
 }

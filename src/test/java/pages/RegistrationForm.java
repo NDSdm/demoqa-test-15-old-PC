@@ -20,14 +20,14 @@ public class RegistrationForm {
             lastNameInput = $("#lastName"),
             emailInput = $("#userEmail"),
             numberInput = $("#userNumber"),
+            dateOfBirtrhInput = $("dateOfBirthInput"),
             subjectInput = $("#subjectsInput"),
             hobbieInput = $("#hobbiesWrapper"),
             addressInput = $("#currentAddress"),
             pictureInput = $("#uploadPicture");
 
     public RegistrationForm openPage() {
-        open("/automation-practice-form")
-        ;
+        open("/automation-practice-form");
 
         return this;
     }
@@ -112,4 +112,7 @@ public class RegistrationForm {
         return this;
     }
 
+    public RegistrationForm checkResult() {
+        return this;
+    }
 }
